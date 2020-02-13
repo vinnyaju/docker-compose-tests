@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  portainer:
+    image: portainer/portainer
+    labels:
+      - "traefik.http.routers.portainer.rule=Host(`portainer.docker.local`)"
+    ports:
+      - "9000:9000"
+      - "8000:8000"
+    volumes:
+      - portainer_data:/data
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - net_traefik
+
+networks:
+  net_traefik:
+    external: true
+
+volumes:
+  portainer_data:

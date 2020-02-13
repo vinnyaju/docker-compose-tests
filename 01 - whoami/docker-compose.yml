@@ -6,3 +6,9 @@ services:
     image: containous/whoami
     labels:
       - "traefik.http.routers.whoami.rule=Host(`whoami.docker.local`)"
+    networks:
+      - net_traefik
+
+networks:
+  net_traefik:
+    external: true
